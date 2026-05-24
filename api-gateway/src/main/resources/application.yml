@@ -1,0 +1,68 @@
+server:
+  port: 8080 # El puerto principal por donde entrarán todas las peticiones (Frontend/Postman)
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # 1. Microservicio de Usuarios
+        - id: ms-usuarios
+          uri: http://localhost:8081 # Asegúrate de que coincida con el puerto en el application.properties de ms-usuarios
+          predicates:
+            - Path=/api/usuarios/**
+
+        # 2. Microservicio de Sucursales
+        - id: ms-sucursales
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/sucursales/**
+
+        # 3. Microservicio de Mascotas
+        - id: ms-mascotas
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/mascotas/**
+
+        # 4. Microservicio de Agenda
+        - id: ms-agenda
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/agenda/**
+
+        # 5. Microservicio de Fichas Clínicas
+        - id: ms-fichas-clinicas
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/fichas-clinicas/**
+
+        # 6. Microservicio de Inventario
+        - id: ms-inventario
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/inventario/**
+
+        # 7. Microservicio de Ventas
+        - id: ms-ventas
+          uri: http://localhost:8087
+          predicates:
+            - Path=/api/ventas/**
+
+        # 8. Microservicio de Notificaciones
+        - id: ms-notificaciones
+          uri: http://localhost:8088
+          predicates:
+            - Path=/api/notificaciones/**
+
+        # 9. Microservicio de Soporte
+        - id: ms-soporte
+          uri: http://localhost:8089
+          predicates:
+            - Path=/api/soporte/**
+
+        # 10. Microservicio de Reportes
+        - id: ms-reportes
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/reportes/**
